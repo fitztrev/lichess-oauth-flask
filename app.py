@@ -1,7 +1,7 @@
 import os
 import pusher
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, redirect
 from flask import url_for
 from flask import render_template
 
