@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+            body {
+                margin: 50px 0;
+            }
+            h1 {
+                margin: 50px 0;
+            }
+        </style>
+
+        <title>Signup for Viewer Bracket</title>
+    </head>
+    <body>
+        <div id="app">
+            <div class="container" v-cloak>
+                <h1>Viewer Bracket Signup</h1>
+
+                <div class="alert alert-success" v-if="success">
+                    Thank you for registering!
+                </div>
+
+                <template v-else>
+                    <div class="form-group form-check">
+                        <label>
+                            <input type="checkbox" class="form-check-input" v-model="confirmations" value="1">
+                            I will not watch the stream during my game
+                        </label>
+                    </div>
+                    <div class="form-group form-check">
+                        <label>
+                            <input type="checkbox" class="form-check-input" v-model="confirmations" value="2">
+                            I will mute the stream during my game
+                        </label>
+                    </div>
+                    <div class="form-group form-check">
+                        <label>
+                            <input type="checkbox" class="form-check-input" v-model="confirmations" value="3">
+                            I will not read the chat during my game
+                        </label>
+                    </div>
+                    <p>After your game, you can watch the VOD to hear the commentary of your game.</p>
+                    <a v-if="confirmations.length === 3" href="/register" class="btn btn-primary">
+                        Click here to signup via Lichess
+                    </a>
+                </template>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    success: window.location.pathname.indexOf('/success') !== -1,
+                    confirmations: [],
+                },
+            })
+        </script>
+    </body>
+</html>

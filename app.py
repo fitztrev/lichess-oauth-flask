@@ -3,6 +3,7 @@ import pusher
 
 from flask import Flask, jsonify
 from flask import url_for
+from flask import render_template
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -30,6 +31,11 @@ oauth = OAuth(app)
 oauth.register('lichess')
 
 @app.route('/')
+@app.route('/success')
+def home():
+    return render_template("index.html")
+
+@app.route('/register')
 def login():
     redirect_uri = url_for("authorize", _external=True)
     """
@@ -47,7 +53,8 @@ def authorize():
     headers = {'Authorization': f'Bearer {bearer}'}
     response = requests.get("https://lichess.org/api/account", headers=headers)
     pusher_client.trigger('registrations', 'signup', response.json())
-    return jsonify(**response.json())
+    return redirect('/success')
+    # return jsonify(**response.json())
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port = int(os.environ.get("PORT", 5000)))
