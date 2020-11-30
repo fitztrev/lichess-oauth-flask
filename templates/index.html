@@ -33,23 +33,11 @@
                     <div class="form-group form-check">
                         <label>
                             <input type="checkbox" class="form-check-input" v-model="confirmations" value="1">
-                            I will not watch the stream during my game
-                        </label>
-                    </div>
-                    <div class="form-group form-check">
-                        <label>
-                            <input type="checkbox" class="form-check-input" v-model="confirmations" value="2">
                             I will mute the stream during my game
                         </label>
                     </div>
-                    <div class="form-group form-check">
-                        <label>
-                            <input type="checkbox" class="form-check-input" v-model="confirmations" value="3">
-                            I will not read the chat during my game
-                        </label>
-                    </div>
                     <p>After your game, you can watch the VOD to hear the commentary of your game.</p>
-                    <a v-if="confirmations.length === 3" href="/register" class="btn btn-primary">
+                    <a v-if="confirmations.length === 1" href="/register" class="btn btn-primary">
                         Click here to signup via Lichess
                     </a>
                 </template>
