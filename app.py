@@ -46,7 +46,7 @@ def authorize():
     bearer = token['access_token']
     headers = {'Authorization': f'Bearer {bearer}'}
     response = requests.get("https://lichess.org/api/account", headers=headers)
-    pusher_client.trigger('registrations', 'signup', jsonify(**response.json()))
+    pusher_client.trigger('registrations', 'signup', response.json())
     return jsonify(**response.json())
 
 if __name__ == '__main__':
