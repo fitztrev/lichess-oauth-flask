@@ -9,6 +9,7 @@ verify_ssl = true
 authlib = "*"
 flask = "*"
 gunicorn = "*"
+pusher = "*"
 python-dotenv = "*"
 requests = "*"
 
